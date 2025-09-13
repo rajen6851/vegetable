@@ -31,3 +31,8 @@ EXPOSE 8000
 
 # Start Laravel server
 CMD php artisan serve --host=0.0.0.0 --port=8000 
+
+# Example for PHP 8
+RUN apt-get update && \
+    apt-get install -y libpq-dev && \
+    docker-php-ext-install pdo_pgsql
