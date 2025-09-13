@@ -4,7 +4,7 @@ FROM php:8.2-fpm
 # Set working directory
 WORKDIR /var/www/html
 
-# Install dependencies
+# Install dependencies including PostgreSQL driver
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -12,7 +12,9 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
     curl \
-    && docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd
+    libpq-dev \
+    && docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd pdo_pgsql \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Composer install
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
@@ -30,9 +32,4 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 EXPOSE 8000
 
 # Start Laravel server
-CMD php artisan serve --host=0.0.0.0 --port=8000 
-
-# Example for PHP 8
-RUN apt-get update && \
-    apt-get install -y libpq-dev && \
-    docker-php-ext-install pdo_pgsql
+CMD php artisan serve --host=0.0.0.0 --port=8000
