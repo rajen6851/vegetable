@@ -110,19 +110,18 @@
 # # Set permissions
 # RUN chown -R www-data:www-data storage bootstrap/cache public/build
 
-# EXPOSE 8000
-# Stage 1: Node build (for assets)
+# E# Stage 1: Node build (for assets)
 FROM node:20 AS build-stage
 WORKDIR /app
 
 # Root से package.json copy करो
-COPY ../package*.json ./
+COPY package*.json ./
 
 # Node modules install करो
 RUN npm install
 
-# Root से baki source copy करो
-COPY ../ ./
+# Root से बाकी source copy करो
+COPY . .
 
 # Vite/webpack assets build करो
 RUN npm run build
@@ -141,7 +140,7 @@ RUN apt-get update && apt-get install -y \
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Laravel source copy करो
-COPY ../ ./
+COPY . .
 
 # Build stage से assets copy करो
 COPY --from=build-stage /app/public/build ./public/build
