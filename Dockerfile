@@ -35,43 +35,98 @@
 # CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
 
 
-# Base image
-FROM php:8.2-fpm
+# # Base image
+# FROM php:8.2-fpm
 
-# Set working directory
+# # Set working directory
+# WORKDIR /var/www/html
+
+# # Install dependencies including PostgreSQL driver and Node.js for Vite
+# RUN apt-get update && apt-get install -y \
+#     git \
+#     unzip \
+#     libzip-dev \
+#     libpng-dev \
+#     libonig-dev \
+#     curl \
+#     libpq-dev \
+#     nodejs \
+#     npm \
+#     && docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd pdo_pgsql \
+#     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# # Composer install
+# COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# # Copy project
+# COPY . .
+
+# # Install PHP dependencies
+# RUN composer install --no-dev --optimize-autoloader
+
+# # Build frontend assets (CSS/JS)
+# RUN npm install && npm run build
+
+
+
+# # Set permissions
+# RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# # Expose port (Render will map automatically)
+# EXPOSE 8000
+
+# # Run migrations and start Laravel server
+# CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
+
+
+# Build stage
+FROM node:20 AS build-stage
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# Production stage
+FROM php:8.2-fpm
 WORKDIR /var/www/html
 
-# Install dependencies including PostgreSQL driver and Node.js for Vite
+# Install PHP extensions
 RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
     libzip-dev \
     libpng-dev \
     libonig-dev \
-    curl \
     libpq-dev \
-    nodejs \
-    npm \
+    unzip \
+    git \
+    curl \
     && docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd pdo_pgsql \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Composer install
+# Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Copy project
+# Copy Laravel app
 COPY . .
 
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
-
-# Build frontend assets (CSS/JS)
-RUN npm install && npm run build
+# Copy built assets
+COPY --from=build-stage /app/public/build ./public/build
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Expose port (Render will map automatically)
-EXPOSE 8000
+# Install Nginx
+RUN apt-get update && apt-get install -y nginx \
+    && rm -rf /var/lib/apt/lists/*
 
-# Run migrations and start Laravel server
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
+# Remove default Nginx site
+RUN rm /etc/nginx/sites-enabled/default
+
+# Copy custom Nginx config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port
+EXPOSE 80
+
+# Start PHP-FPM and Nginx
+CMD service php8.2-fpm start && nginx -g "daemon off;"
