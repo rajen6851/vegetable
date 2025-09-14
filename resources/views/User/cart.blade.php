@@ -68,7 +68,7 @@
 
                                                        
                                                         <div class="cart__thumbnail">
-                                                            <a href="{{ url('/productdetail/' . $cart->product_id) }}"><img class="border-radius-5" src="{{asset('assets/images/Product/' . $cart->product_img)}}" alt="cart-product"></a>
+                                                            <a href="{{ url('/productdetail/' . $cart->product_id) }}"><img class="border-radius-5" src="{{asset('public/assets/images/Product/' . $cart->product_img)}}" alt="cart-product"></a>
                                                         </div>
                                                         <div class="cart__content">
                                                             <h3 class="cart__content--title h4"><a href="product-details.html">{{$cart->product_name}}</a></h3>

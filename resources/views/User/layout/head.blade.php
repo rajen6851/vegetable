@@ -22,24 +22,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('public/assets/img/favicon.ico') }}">
 
   <!-- ======= All CSS Plugins here ======== -->
-  <link rel="stylesheet" href="{{ asset('assets/css/plugins/swiper-bundle.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/plugins/glightbox.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/swiper-bundle.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/glightbox.min.css') }}">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Lora:wght@400;500;600;700&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Plugin CSS -->
-  <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/assets/css/vendor/bootstrap.min.css') }}">
 
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
 
 
   <!-- Custom Style CSS -->
-  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}">
 </head>
 
 {{-- 

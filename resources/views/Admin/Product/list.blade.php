@@ -94,7 +94,7 @@
                                        <td>{{ $product->name }}</td>
                                        <td>
                                            
-                                           <img src="{{ asset('assets/images/Product/' . $product->image) }}" alt="" class="avatar-md p-1">
+                                           <img src="{{ asset('public/assets/images/Product/' . $product->image) }}" alt="" class="avatar-md p-1">
                                        
                                        
                                        
