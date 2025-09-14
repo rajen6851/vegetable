@@ -78,7 +78,6 @@
 # # Run migrations and start Laravel server
 # CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
 
-
 # Build stage for Vite
 FROM node:20 AS build-stage
 WORKDIR /app
@@ -103,7 +102,10 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 # Copy Laravel app
 COPY . .
 
-# Copy built assets from build stage to public/build
+# Install Laravel dependencies
+RUN composer install --no-dev --optimize-autoloader
+
+# Copy built frontend assets from build stage to public/build
 COPY --from=build-stage /app/public/build ./public/build
 
 # Set permissions
@@ -112,5 +114,5 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 # Expose port (Render automatically maps it)
 EXPOSE 8000
 
-# Run Laravel server
+# Run Laravel migrations and start server
 CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
