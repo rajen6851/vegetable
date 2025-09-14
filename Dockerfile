@@ -77,9 +77,8 @@
 
 # # Run migrations and start Laravel server
 # CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
-
-# Build stage for Vite
-FROM node:20 AS build-stage
+# Build stage for Node.js
+FROM node:20 AS node_build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
@@ -90,29 +89,27 @@ RUN npm run build
 FROM php:8.2-fpm
 WORKDIR /var/www/html
 
-# Install PHP extensions
+# Install dependencies
 RUN apt-get update && apt-get install -y \
-    libzip-dev libpng-dev libonig-dev libpq-dev unzip git curl \
+    git unzip libzip-dev libpng-dev libonig-dev curl libpq-dev \
     && docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd pdo_pgsql \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && apt-get clean
 
-# Composer
+# Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Copy Laravel app
+# Copy application
 COPY . .
 
-# Install Laravel dependencies
+# Copy built assets from node_build stage
+COPY --from=node_build /app/public/build ./public/build/
+
+# Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Copy built frontend assets from build stage to public/build
-COPY --from=build-stage /app/public/build ./public/build
-
 # Set permissions
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data storage bootstrap/cache public/build
 
-# Expose port (Render automatically maps it)
 EXPOSE 8000
 
-# Run Laravel migrations and start server
 CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
