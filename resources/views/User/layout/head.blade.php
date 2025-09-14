@@ -24,23 +24,25 @@
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}">
 
-  <!-- ======= All CSS Plugins here ======== -->
+  <!-- CSS Plugins -->
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/swiper-bundle.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/glightbox.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Lora:wght@400;500;600;700&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Plugin CSS -->
-  <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}">
-
-
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
-
-
-  <!-- Custom Style CSS -->
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+  <!-- Laravel Vite / App CSS -->
+  <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
+
+  <!-- Scripts -->
+  <script defer src="{{ asset('build/assets/app.js') }}"></script>
 </head>
+
 
 {{-- 
 
