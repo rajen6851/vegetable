@@ -115,31 +115,38 @@
 # CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
 
 
-# Production stage
+# PHP-FPM बेस इमेज
 FROM php:8.2-fpm
 
+# वर्किंग डायरेक्टरी सेट करें
 WORKDIR /var/www/html
 
-# Install system dependencies
+# आवश्यक सिस्टम डिपेंडेंसीज़ इंस्टॉल करें
 RUN apt-get update && apt-get install -y \
-    git unzip libzip-dev libpng-dev libonig-dev curl libpq-dev \
+    git \
+    unzip \
+    libzip-dev \
+    libpng-dev \
+    libonig-dev \
+    curl \
+    libpq-dev \
     && docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd pdo_pgsql \
     && apt-get clean
 
-# Install Composer
+# Composer इंस्टॉल करें
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Copy the entire application including built assets
+# एप्लिकेशन फाइल्स कॉपी करें
 COPY . .
 
-# Install PHP dependencies
+# Composer डिपेंडेंसीज़ इंस्टॉल करें
 RUN composer install --no-dev --optimize-autoloader
 
-# Set permissions
+# आवश्यक फोल्डर्स की परमिशन सेट करें
 RUN chown -R www-data:www-data storage bootstrap/cache public/build
 
-# Expose port
+# पोर्ट 8000 एक्सपोज़ करें
 EXPOSE 8000
 
-# Run migrations and start server
+# सर्वर स्टार्ट कमांड
 CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
