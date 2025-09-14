@@ -29,7 +29,7 @@
                                         </div>
                                         <div class="col">
                                             <div class="hero__slider--layer">
-                                                <img class="slider__layer--img "  width="755" height="481" src="{{asset('build/assets/img/slider/home1-slider1-layer.jpg')}}" alt="slider-img">
+                                                <img class="slider__layer--img "  width="755" height="481" src="{{asset('assets/img/slider/home1-slider1-layer.jpg')}}" alt="slider-img">
                                             </div>
                                         </div>
                                     </div>
@@ -177,7 +177,7 @@
                                     <div class="product__items ">
                                         <div class="product__items--thumbnail">
                                             <a class="product__items--link" href="{{ route('productdetails', $product->id) }}">
-                                                 <img class="product__items--img product__primary--img" src="{{ asset('build/assets/images/Product/' . $product->image) }}" alt="">
+                                                 <img class="product__items--img product__primary--img" src="{{ asset('assets/images/Product/' . $product->image) }}" alt="">
                                        
                                                 {{-- <img class="product__items--img product__primary--img" src="assets/img/product/product1.png" alt="product-img">
                                                 <img class="product__items--img product__secondary--img" src="assets/img/product/product2.png" alt="product-img"> --}}

@@ -62,7 +62,7 @@
                         </a>
                     </div>
                     <div class="main__logo">
-                        <h1 class="main__logo--title"><a class="main__logo--link" href="{{Route('user_home')}}"><img width="60px" height="66px" class="main__logo--img" src="{{asset('build/assets/img/logo/nav-log3.png')}}" alt="logo-img"></a></h1>
+                        <h1 class="main__logo--title"><a class="main__logo--link" href="{{Route('user_home')}}"><img width="60px" height="66px" class="main__logo--img" src="{{asset('assets/img/logo/nav-log3.png')}}" alt="logo-img"></a></h1>
                     </div>
                     <div class="header__search--widget d-none d-lg-block header__sticky--none">
                         <form class="d-flex header__search--form" action="#">

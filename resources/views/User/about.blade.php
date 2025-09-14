@@ -29,7 +29,7 @@
                     <div class="col-lg-6">
                         <div class="about__thumb d-flex">
                             <div class="about__thumb--items">
-                                <img class="about__thumb--img border-radius-5 display-block" src="{{ asset('build/assets/img/About/about.jpeg')}}" alt="about-thumb">
+                                <img class="about__thumb--img border-radius-5 display-block" src="{{ asset('assets/img/About/about.jpeg')}}" alt="about-thumb">
                             </div>
                             {{-- <div class="about__thumb--items position__relative">
                                 <img class="about__thumb--img border-radius-5 display-block" src="assets/img/other/about-thumb-list2.png{}" alt="about-thumb">
