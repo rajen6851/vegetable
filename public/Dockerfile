@@ -111,47 +111,45 @@
 # RUN chown -R www-data:www-data storage bootstrap/cache public/build
 
 # EXPOSE 8000
-
-# CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
 # Stage 1: Node build (for assets)
 FROM node:20 AS build-stage
 WORKDIR /app
 
-# package.json और package-lock.json copy करें
-COPY package*.json ./
+# Root से package.json copy करो
+COPY ../package*.json ./
 
-# Node modules install करें
+# Node modules install करो
 RUN npm install
 
-# बाकी source copy करें
-COPY . .
+# Root से baki source copy करो
+COPY ../ ./
 
-# Vite/webpack assets build करें
+# Vite/webpack assets build करो
 RUN npm run build
 
 # Stage 2: PHP-FPM
 FROM php:8.2-fpm
 WORKDIR /var/www/html
 
-# PHP system dependencies install करें
+# PHP dependencies install करो
 RUN apt-get update && apt-get install -y \
     git unzip libzip-dev libpng-dev libonig-dev curl libpq-dev \
     && docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd pdo_pgsql \
     && apt-get clean
 
-# Composer install करें
+# Composer install करो
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Laravel source copy करें
-COPY . .
+# Laravel source copy करो
+COPY ../ ./
 
-# Build stage से assets copy करें
+# Build stage से assets copy करो
 COPY --from=build-stage /app/public/build ./public/build
 
-# Composer dependencies install करें
+# Composer dependencies install करो
 RUN composer install --no-dev --optimize-autoloader
 
-# Permissions set करें
+# Permissions set करो
 RUN chown -R www-data:www-data storage bootstrap/cache public/build
 
 # Expose port
