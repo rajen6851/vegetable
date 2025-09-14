@@ -78,18 +78,49 @@
 # # Run migrations and start Laravel server
 # CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
 # Build stage for Node.js
-FROM node:20 AS node_build
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
+# FROM node:20 AS node_build
+# WORKDIR /app
+# COPY package*.json ./
+# RUN npm install
+# COPY . .
+# RUN npm run build
+
+# # Production stage
+# FROM php:8.2-fpm
+# WORKDIR /var/www/html
+
+# # Install dependencies
+# RUN apt-get update && apt-get install -y \
+#     git unzip libzip-dev libpng-dev libonig-dev curl libpq-dev \
+#     && docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd pdo_pgsql \
+#     && apt-get clean
+
+# # Install Composer
+# COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# # Copy application
+# COPY . .
+
+# # Copy built assets from node_build stage
+# COPY --from=node_build /app/public/build ./public/build/
+
+# # Install PHP dependencies
+# RUN composer install --no-dev --optimize-autoloader
+
+# # Set permissions
+# RUN chown -R www-data:www-data storage bootstrap/cache public/build
+
+# EXPOSE 8000
+
+# CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
+
 
 # Production stage
 FROM php:8.2-fpm
+
 WORKDIR /var/www/html
 
-# Install dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     git unzip libzip-dev libpng-dev libonig-dev curl libpq-dev \
     && docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd pdo_pgsql \
@@ -98,11 +129,8 @@ RUN apt-get update && apt-get install -y \
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Copy application
+# Copy the entire application including built assets
 COPY . .
-
-# Copy built assets from node_build stage
-COPY --from=node_build /app/public/build ./public/build/
 
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
@@ -110,6 +138,8 @@ RUN composer install --no-dev --optimize-autoloader
 # Set permissions
 RUN chown -R www-data:www-data storage bootstrap/cache public/build
 
+# Expose port
 EXPOSE 8000
 
+# Run migrations and start server
 CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
