@@ -4,15 +4,16 @@ FROM php:8.2-cli
 # Set working directory
 WORKDIR /var/www/html
 
-# Install system dependencies
+# Install system dependencies including PostgreSQL client libraries
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
     libzip-dev \
     libpng-dev \
     libonig-dev \
+    libpq-dev \
     curl \
-    && docker-php-ext-install pdo_mysql mbstring zip exif \
+    && docker-php-ext-install pdo_pgsql pdo_mysql mbstring zip exif \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy project files
