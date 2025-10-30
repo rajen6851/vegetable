@@ -13,7 +13,19 @@
                                 </button>
                             </h3>
                             <div class="footer__widget--inner">
-                                <a class="footer__widget--logo" href="index.html"><img src="assets/img/logo/nav-log.png" alt="footer-logo"></a>
+                                {{-- <a class="footer__widget--logo" href="index.html"><img src="assets/img/logo/nav-log.png" alt="footer-logo"></a> --}}
+                                        <div class="main__logo">
+  <h1 class="main__logo--title">
+    <a class="main__logo--link" href="{{ Route('user_home') }}">
+      <img 
+        class="main__logo--img" 
+        src="{{ asset('assets/img/product/WhatsApp Image 2025-10-29 at 4.14.28 PM.jpeg') }}" 
+        alt="logo-img" 
+        style="height: 70px; width: auto;"
+      >
+    </a>
+  </h1>
+</div>
                                 <p class="footer__widget--desc m-0">The variety of products available at our store at the moment is vast, but we still continue to widen our assortment.</p>
                                 <ul class="footer__widget--social d-flex">
                                     <li class="footer__widget--social__list">
@@ -153,7 +165,7 @@
                 </div>
             </div>
         </div>
-        <img class="footer__position--shape__one" src="assets/img/other/footer-shape1.png" alt="footer-shape">
-        <img class="footer__position--shape__two" src="assets/img/other/footer-shape2.png" alt="footer-shape">
+        {{-- <img class="footer__position--shape__one" src="assets/img/other/footer-shape1.png" alt="footer-shape">
+        <img class="footer__position--shape__two" src="assets/img/other/footer-shape2.png" alt="footer-shape"> --}}
     </footer>
     <!-- End footer section -->

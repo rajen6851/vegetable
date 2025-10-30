@@ -28,7 +28,7 @@
                                 
                             </li>
                              <li>
-                                <a href="{{url('admin/Orders')}}">
+                                <a href="{{url('admin/order')}}">
                                     <i data-feather="message-square"></i>
                                     <span data-key="t-chat">Orders</span>
                                 </a>

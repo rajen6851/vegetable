@@ -6,10 +6,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
 
+use App\Http\Controllers\ProductController;
+Route::get('/search-products', [WebController::class, 'searchProducts'])->name('searchindex');
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -23,15 +25,28 @@ Route::get('/', [WebController::class, 'Home'])->name('user_home');
 
 Route::get('/about',[WebController::class,'About'])->name('about');
 
+Route::get('/contact',[WebController::class,'contact'])->name('contact');
+
+
+
 Route::get('/myaccount',[WebController::class,'MyAccount'])->name('myaccount');
 
 Route::get('/productdetail/{id}',[WebController::class,'productdetails'])->name('productdetails');
 
 // Route::get('/shop')
-Route::get('/shop',[WebController::class,'shop'])->name('shop');
+// Route::get('/shop',[WebController::class,'shop'])->name('shop');
+Route::get('/shop/{category?}', [WebController::class, 'shop'])->name('shop');
+
 
 Route::get('/wishlist',[WebController::class,'Wishlist'])->name('wishlist');
 Route::post('/savewishlist', [WebController::class, 'savewishlist'])->name('savewishlist');
+
+Route::get('/checkout',[WebController::class,'checkout'])->name('checkout');
+
+Route::post('/savecheckout',[WebController::class,'savecheckout'])->name('savecheckout');
+
+// Route::get('/ordersuccess/{id}',[WebController::class,'ordersuccess'])->name('ordersuccess');
+Route::get('/ordersuccess/{id}', [WebController::class, 'ordersuccess'])->name('ordersuccess');
 
 Route::get('cart',[WebController::class,'cart'])->name('cart');
 Route::post('savecart',[WebController::class,'savecart'])->name('savecart');
@@ -59,6 +74,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::post('users-import', 'import')->name('users.import');
     });
 
+Route::controller(OrderController::class)->group(function() {
+    Route::get('admin/order', 'orderlist')->name('orderlist'); // Typo fix: 'oderlist' → 'orderlist'
+    Route::get('admin/show/{id}', 'ordershow')->name('ordershow');
+});
 
  Route::prefix('admin/Category')->group(function () {
         Route::get('/', [categoryController::class, 'index'])->name('category.index');

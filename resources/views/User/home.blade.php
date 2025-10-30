@@ -10,7 +10,7 @@
     
     <main class="main__content_wrapper">
         <!-- Start slider section -->
-        <section class="hero__slider--section">
+        {{-- <section class="hero__slider--section">
             <div class="hero__slider--inner hero__slider--activation swiper">
                 <div class="hero__slider--wrapper swiper-wrapper">
                     <div class="swiper-slide ">
@@ -88,65 +88,351 @@
                 </div>
                 <div class="slider__pagination swiper-pagination"></div>
             </div>
-        </section>
+        </section> --}}
         <!-- End slider section -->
 
-       <!-- Start categories product section -->
-<section class="product__section product__categories--section section--padding">
-    <div class="container">
-        <div class="section__heading text-center mb-40">
-            <span class="section__heading--subtitle">Recently added our store</span>
-            <h2 class="section__heading--maintitle">Shop by Category</h2>
-        </div>
+        <!-- ✅ Hero Slider Section -->
+<section class="custom-hero-slider">
+  <div class="swiper custom-slider">
+    <div class="swiper-wrapper">
 
-        <div class="product__section--inner product__swiper--activation swiper">
-            <div class="swiper-wrapper">
-
-                @foreach($categories as $c)
-                <div class="swiper-slide"> <!-- 👈 har category apni ek slide -->
-                    <div class="product__items product__bg">
-                        <div class="product__items--thumbnail">
-                            <a class="product__items--link" href="shop.html">
-                                <img class="product__items--img" src="{{ asset('images/category/' . $c->image) }}" alt="categories-img">
-
-                                <div class="product__categories--content d-flex justify-content-between align-items-center">
-                                    <div class="product__categories--content__left">
-                                        <h3 class="product__categories--content__maintitle">{{$c->name}}</h3>
-                                        <span class="product__categories--content__subtitle">99 items</span>
-                                    </div>
-
-                                    <div class="product__categories--icon">
-                                        <span class="product__categories--icon__link">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="15.995" height="10.979" viewBox="0 0 15.995 10.979">
-                                                <path d="M212.706,299.839a.425.425,0,0,0,0-.6l-3.458-3.458a.425.425,0,0,1,0-.6l1.008-1.008a.425.425,0,0,1,.6,0l5.065,5.065a.425.425,0,0,1,0,.6l-5.065,5.066a.425.425,0,0,1-.6,0l-1.008-1.008a.425.425,0,0,1,0-.6Zm-6.305-.3a2.215,2.215,0,1,0,2.216-2.216A2.215,2.215,0,0,0,206.4,299.541Zm-3.634,0a1.6,1.6,0,1,0,1.6-1.605A1.6,1.6,0,0,0,202.767,299.541Zm-2.717,0a1.154,1.154,0,1,0,1.154-1.154A1.155,1.155,0,0,0,200.05,299.541Z" transform="translate(-200.05 -294.05)" fill="currentColor"/>
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-
+              <!-- Slide 2 -->
+      <div class="swiper-slide custom-slide" style="background-image: url('{{asset('assets/img/slider/16245.jpg')}}');">
+        <div class="custom-overlay"></div>
+        <div class="container py-5">
+          <div class="row align-items-center">
+            <div class="col-md-7">
+              <div class="custom-slide-content text-white">
+                <span class="custom-slide-subtitle">Go Green</span>
+                <h2 class="custom-slide-title">Nature’s <span class="highlight">Goodness</span> in Every Bite</h2>
+                <p class="custom-slide-desc">Organic food is not just a trend — it’s a commitment to purity, health, and sustainability.</p>
+                <a class="btn custom-slide-btn" href="shop.html">Explore</a>
+              </div>
             </div>
-
-            <!-- Navigation buttons -->
-            <div class="swiper__nav--btn swiper-button-next"></div>
-            <div class="swiper__nav--btn swiper-button-prev"></div>
+          </div>
         </div>
+      </div>
+
+      <!-- Slide 1 -->
+      <div class="swiper-slide custom-slide" style="background-image: url('{{asset('assets/img/slider/home1-slider1-layer.jpg')}}');">
+        <div class="custom-overlay"></div>
+        <div class="container py-5">
+          <div class="row align-items-center">
+            <div class="col-md-7">
+              <div class="custom-slide-content text-white">
+                <span class="custom-slide-subtitle">Fresh & Organic</span>
+                <h2 class="custom-slide-title">Eat <span class="highlight">Healthy</span>, Live Better</h2>
+                <p class="custom-slide-desc">Switch to organic for a cleaner, healthier lifestyle — naturally grown, chemical-free, and full of flavor.</p>
+                <a class="btn custom-slide-btn" href="shop.html">Shop Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Slide 3 -->
+      <div class="swiper-slide custom-slide" style="background-image: url('{{asset('assets/img/slider/flat-lay-vegetables-frame-with-copy-space.jpg')}}');">
+        <div class="custom-overlay"></div>
+        <div class="container py-5">
+          <div class="row align-items-center">
+            <div class="col-md-7">
+              <div class="custom-slide-content text-white">
+                <span class="custom-slide-subtitle">Organic Lifestyle</span>
+                <h2 class="custom-slide-title">Love Your <span class="highlight">Health</span> Naturally</h2>
+                <p class="custom-slide-desc">The more you love your health, the more you choose organic — no medicine heals better than nature.</p>
+                <a class="btn custom-slide-btn" href="shop.html">Discover</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+
+    <!-- Pagination -->
+    <div class="swiper-pagination custom-slider-pagination"></div>
+  </div>
 </section>
 
+<!-- ✅ CSS -->
 <style>
-    .product__items--img {
-    width: 100%;          /* parent div jitni width */
-    height: 200px;        /* jitni height chahiye fix karo */
-    object-fit: cover;    /* image crop hoke fit ho jayegi */
-    border-radius: 10px;  /* thoda rounded look ke liye */
+.custom-hero-slider {
+  position: relative;
+  overflow: hidden;
 }
 
+.custom-slide {
+  min-height: 74vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.custom-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  z-index: 1;
+}
+
+.custom-slide-content {
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 1.2s ease;
+}
+
+.custom-slide-title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.highlight {
+  color: #00ffae;
+}
+
+.custom-slide-subtitle {
+  color: #00ffae;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.custom-slide-desc {
+  margin: 15px 0 25px;
+  color: #f3f3f3;
+  font-size: 1.1rem;
+  max-width: 600px;
+}
+
+.custom-slide-btn {
+  background-color: #00a86b;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.custom-slide-btn:hover {
+  background-color: #007a50;
+  transform: translateY(-3px);
+}
+
+.custom-slider-pagination .swiper-pagination-bullet {
+  background: #00ffae;
+  opacity: 0.4;
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+.custom-slider-pagination .swiper-pagination-bullet-active {
+  opacity: 1;
+  width: 25px;
+  border-radius: 5px;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .custom-slide {
+    text-align: center;
+  }
+  .custom-slide-title {
+    font-size: 2rem;
+  }
+  .custom-slide-desc {
+    font-size: 1rem;
+  }
+}
 </style>
+
+<!-- ✅ JS -->
+<script>
+var swiper = new Swiper('.custom-slider', {
+  loop: true,
+  autoplay: {
+    delay: 4000,
+    disableOnInteraction: false,
+  },
+  speed: 800,
+  pagination: {
+    el: '.custom-slider-pagination',
+    clickable: true,
+  },
+  effect: 'slide',
+});
+</script>
+
+
+       <!-- Start categories product section -->
+<section class="category-section section--padding">
+  <div class="container">
+    <div class="section__heading text-center mb-40">
+      <span class="section__heading--subtitle">Recently added to our store</span>
+      <h2 class="section__heading--maintitle">Shop by Category</h2>
+    </div>
+
+    <div class="swiper category-swiper">
+      <div class="swiper-wrapper">
+        @foreach($categories as $c)
+        <div class="swiper-slide">
+          <a href="{{ route('shop', $c->id) }}" class="category-card">
+            <div class="category-image" style="background-image: url('{{ asset('images/category/' . $c->image) }}');"></div>
+            <div class="category-overlay"></div>
+            <div class="category-info">
+              <h3 class="category-title">{{$c->name}}</h3>
+              <span class="category-subtitle">99 items</span>
+            </div>
+          </a>
+        </div>
+        @endforeach
+      </div>
+
+      <!-- Navigation Arrows -->
+      <div class="swiper-button-next category-nav-btn"></div>
+      <div class="swiper-button-prev category-nav-btn"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ CSS -->
+<style>
+.category-section {
+  background: #f9fafb;
+  position: relative;
+}
+
+.category-swiper {
+  position: relative;
+  padding-bottom: 50px;
+}
+
+.category-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  display: block;
+  height: 280px;
+  transition: transform 0.4s ease;
+  text-decoration: none;
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+}
+
+.category-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease;
+}
+
+.category-card:hover .category-image {
+  transform: scale(1.1);
+}
+
+.category-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+  z-index: 1;
+}
+
+.category-info {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 2;
+  color: #fff;
+}
+
+.category-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.category-subtitle {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.category-nav-btn {
+  color: #00a86b;
+  transition: all 0.3s ease;
+}
+
+.category-nav-btn:hover {
+  color: #007a50;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .category-card {
+    height: 200px;
+  }
+  .category-title {
+    font-size: 1.2rem;
+  }
+}
+</style>
+
+<!-- ✅ JS -->
+<script>
+var swiper = new Swiper('.category-swiper', {
+  slidesPerView: 3,
+  spaceBetween: 30,
+  loop: true,
+  autoplay: {
+    delay: 3500,
+    disableOnInteraction: false,
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  breakpoints: {
+    0: { slidesPerView: 1 },
+    576: { slidesPerView: 2 },
+    992: { slidesPerView: 3 },
+  }
+});
+</script>
+
 <!-- End categories product section -->
 
 
@@ -154,17 +440,17 @@
         <section class="product__section section--padding pt-0">
             <div class="container">
                 <div class="section__heading text-center mb-25">
-                    <span class="section__heading--subtitle">Recently added our store</span>
-                    <h2 class="section__heading--maintitle">Trending Products</h2>
+                    {{-- <span class="section__heading--subtitle">Recently added our store</span> --}}
+                    <h2 class="section__heading--maintitle">All Products</h2>
                 </div>
-                <ul class="product__tab--one product__tab--btn d-flex justify-content-center mb-35">
+                {{-- <ul class="product__tab--one product__tab--btn d-flex justify-content-center mb-35">
                     <li class="product__tab--btn__list active" data-toggle="tab" data-target="#product_all">All</li>
                     <li class="product__tab--btn__list" data-toggle="tab" data-target="#product_fresh">Fresh</li>
                     <li class="product__tab--btn__list" data-toggle="tab" data-target="#product_fruits">Fruits </li>
                     <li class="product__tab--btn__list" data-toggle="tab" data-target="#product_nature">Nature</li>
                     <li class="product__tab--btn__list" data-toggle="tab" data-target="#product_recipies">Recipies </li>
                     <li class="product__tab--btn__list" data-toggle="tab" data-target="#product_vegetable">Vegetable </li>
-                </ul>
+                </ul> --}}
                 
 
                 <div class="tab_content">
@@ -248,7 +534,8 @@
                                             </ul>
                                         </div>
                                        <div class="product__items--content text-center">
-    <a class="add__to--cart__btn" href="cart.html">+ Add to cart</a>
+                                        
+    <a class="add__to--cart__btn" href="{{Route('savecart')}}">+ Add to cart</a>
 
     <!-- Product Name -->
     <h3 class="product__items--content__title h4">
@@ -305,7 +592,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="product_fresh" class="tab_pane">
+                    {{-- <div id="product_fresh" class="tab_pane">
                         <div class="product__section--inner">
                             <div class="row row-cols-lg-4 row-cols-md-3 row-cols-2 mb--n28">
                                 <div class="col mb-28">
@@ -638,8 +925,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="product_fruits" class="tab_pane">
+                    </div> --}}
+                    {{-- <div id="product_fruits" class="tab_pane">
                         <div class="product__section--inner">
                             <div class="row row-cols-lg-4 row-cols-md-3 row-cols-2 mb--n28">
                                 <div class="col mb-28">
@@ -972,7 +1259,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div id="product_nature" class="tab_pane">
                         <div class="product__section--inner">
                             <div class="row row-cols-lg-4 row-cols-md-3 row-cols-2 mb--n28">
@@ -980,7 +1267,9 @@
                                     <div class="product__items">
                                         <div class="product__items--thumbnail">
                                             <a class="product__items--link" href="product-details.html">
-                                                <img class="product__items--img product__primary--img" src="assets/img/product/product5.png" alt="product-img">
+                                                {{-- C:\xampp\htdocs\vege\vegetable\public\assets\img\product\download (5).jpg --}}
+                                                {{-- src="{{asset('assets/img/slider/home1-slider1-layer.jpg')}}" --}}
+                                                <img class="product__items--img product__primary--img" src="{{asset("assets\img\product\download (5).jpg")}}" alt="product-img">
                                                 <img class="product__items--img product__secondary--img" src="assets/img/product/product6.png" alt="product-img">
                                             </a>
                                             <div class="product__badge">
@@ -1981,38 +2270,9 @@
         <!-- End product section -->
 
         <!-- Start banner section -->
-        <section class="banner__section section--padding pt-0">
-            <div class="container">
-                <div class="row row-cols-lg-2 row-cols-md-2 row-cols-sm-2 row-cols-1 mb--n30">
-                    <div class="col mb-30">
-                        <div class="banner__items position__relative">
-                            <a class="banner__items--thumbnail display-block" href="shop.html"><img class="banner__items--thumbnail__img display-block" src="assets/img/banner/banner1.png" alt="banner-img">
-                                <div class="banner__items--content">
-                                    <h2 class="banner__items--content__title text__secondary">Organic Juice</h2>
-                                    <p class="banner__items--content__desc text-white">Shop our selection of organic fresh vegetables in a discounted price 10% off.</p>
-                                    <span class="btn banner__items--content__btn">Shop Now</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col mb-30">
-                        <div class="banner__items position__relative">
-                            <a class="banner__items--thumbnail display-block" href="shop.html"><img class="banner__items--thumbnail__img display-block" src="assets/img/banner/banner2.png" alt="banner-img"> 
-                                <div class="banner__items--content">
-                                    <h2 class="banner__items--content__title text__secondary">Organic Food</h2>
-                                    <p class="banner__items--content__desc text-black">Shop our selection of organic fresh vegetables in a discounted price 10% off.</p>
-                                    <span class="btn banner__items--content__btn">Shop Now</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End banner section -->
 
         <!-- Start deal product section -->
-        <section class="product__section section--padding pt-0">
+        {{-- <section class="product__section section--padding pt-0">
             <div class="container">
                 <div class="section__heading text-center mb-40">
                     <span class="section__heading--subtitle">Recently added our store</span>
@@ -2250,33 +2510,11 @@
                     <div class="swiper__nav--btn swiper-button-prev"></div>
                 </div>
             </div>
-        </section>
+        </section> --}}
         <!-- End deal product section -->
 
         <!-- Start deals banner section -->
-        <section class="deals__banner--section banner__bg">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-5 col-md-5 deals__baner--col">
-                        <div class="deals__banner--content">
-                            <h3 class="deals__banner--content__subtitle text__secondary">Best Deals of the week!</h3>
-                            <h2 class="deals__banner--content__maintitle">Grab The Best Offer 
-                                of This Week</h2>
-                            <p class="deals__banner--content__desc">Shop our selection of organic fresh vegetables in a discounted price. 10% off on all vegetables.</p>
-                            <div class="deals__banner--countdown d-flex" data-countdown="Sep 30, 2022 00:00:00"></div>
-                            <a class="btn deals__banner--content__btn" href="shop.html">Discover Now</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-7 col-md-7 deals__baner--col">
-                        <div class="banner__items text-right">
-                            <a class="banner__items--thumbnail display-block" href="shop.html"><img class="banner__items--thumbnail__img display-block" src="assets/img/banner/banner-layer.png" alt="banner-layer-img"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End deals banner section -->
-        
+           
         <!-- Start blog section -->
         <section class="blog__section section--padding">
             <div class="container blog__section--container">
@@ -2289,7 +2527,7 @@
                         <div class="swiper-slide">
                             <div class="blog__items">
                                 <div class="blog__items--thumbnail">
-                                    <a class="blog__items--link" href="blog-details.html"><img class="blog__items--img" src="assets/img/blog/blog1.png" alt="blog-img"></a>
+                                    <a class="blog__items--link" href="blog-details.html"><img class="blog__items--img" src="{{asset('assets\img\product\download (6).jpg')}}" alt="blog-img"></a>
                                 </div>
                                 <div class="blog__items--content">
                                     <div class="blog__items--meta">
@@ -2317,10 +2555,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-slide">
+                         <div class="swiper-slide">
                             <div class="blog__items">
                                 <div class="blog__items--thumbnail">
-                                    <a class="blog__items--link" href="blog-details.html"><img class="blog__items--img" src="assets/img/blog/blog2.png" alt="blog-img"></a>
+                                    <a class="blog__items--link" href="blog-details.html"><img class="blog__items--img" src="{{asset('assets\img\product\download (6).jpg')}}" alt="blog-img"></a>
                                 </div>
                                 <div class="blog__items--content">
                                     <div class="blog__items--meta">
@@ -2339,7 +2577,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <h3 class="blog__items--title"><a href="blog-details.html">Lorem ipsum dolor sit amet are consecte.</a></h3>
+                                    <h3 class="blog__items--title"><a href="blog-details.html">Aypi Non Habent Claritatemnon Insitam</a></h3>
                                     <p class="blog__items--desc">It is a long established fact that a reader will be  by the readable content of a page when looking at.  </p>
                                     <a class="blog__items--readmore" href="blog-details.html">Read more <svg class="blog__items--readmore__icon" xmlns="http://www.w3.org/2000/svg" width="6.2" height="6.2" viewBox="0 0 6.2 6.2">
                                         <path  d="M7.1,4l-.546.546L8.716,6.713H4v.775H8.716L6.554,9.654,7.1,10.2,9.233,8.067,10.2,7.1Z" transform="translate(-4 -4)" fill="currentColor"/>
@@ -2347,11 +2585,10 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="swiper-slide">
+                        </div> <div class="swiper-slide">
                             <div class="blog__items">
                                 <div class="blog__items--thumbnail">
-                                    <a class="blog__items--link" href="blog-details.html"><img class="blog__items--img" src="assets/img/blog/blog3.png" alt="blog-img"></a>
+                                    <a class="blog__items--link" href="blog-details.html"><img class="blog__items--img" src="{{asset('assets\img\product\download (6).jpg')}}" alt="blog-img"></a>
                                 </div>
                                 <div class="blog__items--content">
                                     <div class="blog__items--meta">
@@ -2370,7 +2607,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <h3 class="blog__items--title"><a href="blog-details.html">Ratione nobis the are delectus in impedit?</a></h3>
+                                    <h3 class="blog__items--title"><a href="blog-details.html">Aypi Non Habent Claritatemnon Insitam</a></h3>
                                     <p class="blog__items--desc">It is a long established fact that a reader will be  by the readable content of a page when looking at.  </p>
                                     <a class="blog__items--readmore" href="blog-details.html">Read more <svg class="blog__items--readmore__icon" xmlns="http://www.w3.org/2000/svg" width="6.2" height="6.2" viewBox="0 0 6.2 6.2">
                                         <path  d="M7.1,4l-.546.546L8.716,6.713H4v.775H8.716L6.554,9.654,7.1,10.2,9.233,8.067,10.2,7.1Z" transform="translate(-4 -4)" fill="currentColor"/>
@@ -2378,11 +2615,10 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="swiper-slide">
+                        </div> <div class="swiper-slide">
                             <div class="blog__items">
                                 <div class="blog__items--thumbnail">
-                                    <a class="blog__items--link" href="blog-details.html"><img class="blog__items--img" src="assets/img/blog/blog1.png" alt="blog-img"></a>
+                                    <a class="blog__items--link" href="blog-details.html"><img class="blog__items--img" src="{{asset('assets\img\product\download (6).jpg')}}" alt="blog-img"></a>
                                 </div>
                                 <div class="blog__items--content">
                                     <div class="blog__items--meta">
@@ -2410,6 +2646,7 @@
                                 </div>
                             </div>
                         </div>
+                       
                     </div>
                     <div class="swiper__nav--btn swiper-button-next"></div>
                     <div class="swiper__nav--btn swiper-button-prev"></div>
@@ -2418,7 +2655,7 @@
         </section>
         <!-- End blog section -->
 
-        <!-- Start testimonial section -->
+        {{-- <!-- Start testimonial section -->
         <section class="testimonial__section testimonial__bg section--padding">
             <div class="container-fluid p-0">
                 <div class="section__heading text-center mb-55">
@@ -2712,7 +2949,7 @@
                     <div class="swiper__nav--btn swiper-button-prev"></div>
                 </div>
             </div>
-        </section>
+        </section> --}}
         <!-- End testimonial section -->
 
         <!-- Start shipping section -->

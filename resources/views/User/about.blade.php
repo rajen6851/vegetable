@@ -299,7 +299,7 @@
         <!-- End team members section -->
 
         <!-- Start testimonial section -->
-        <section class="testimonial__section testimonial__bg section--padding">
+        {{-- <section class="testimonial__section testimonial__bg section--padding">
             <div class="container-fluid p-0">
                 <div class="section__heading text-center mb-40">
                     <span class="section__heading--subtitle">Recently added our store</span>
@@ -592,7 +592,7 @@
                     <div class="swiper__nav--btn swiper-button-prev"></div>
                 </div>
             </div>
-        </section>
+        </section> --}}
         <!-- End testimonial section -->
 
         <!-- Start brand logo section -->
