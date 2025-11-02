@@ -36,6 +36,10 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
+
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
   <!-- Laravel Vite / App CSS -->
   <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
 

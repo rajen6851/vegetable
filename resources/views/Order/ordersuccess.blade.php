@@ -14,6 +14,9 @@
             <div style="text-align:left; background:#f5f5f5; padding:1rem; border-radius:5px; margin-bottom:1rem;">
                 <p><strong>Order ID:</strong> #{{ $order->id }}</p>
                 <p><strong>Customer:</strong> {{ $customer->name }}</p>
+                @foreach($order->carts as $item)
+                <p><strong>Product:</strong>{{$item->product->name,}}</p>
+                @endforeach
                 <p><strong>Address:</strong> {{ $customer->address }}, {{ $customer->city }}, {{ $customer->country }}</p>
                 <p><strong>Delivery:</strong> {{ \Carbon\Carbon::parse($order->delivery_date_time)->format('d-m-Y h:i A') }}</p>
                 <p><strong>Status:</strong> Processing</p>

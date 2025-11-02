@@ -171,12 +171,17 @@ public function savecart(Request $request)
         ]);
     }
 
+    // return response()->json($request->all());
+
+
     $request->validate([
         'product_id' => 'required|integer|exists:products,id',
         'price' => 'required|numeric|min:0',
         'weight' => 'required|string|max:50',
         'quantity' => 'required|integer|min:1',
     ]);
+
+    
 
     // Check if product already exists in cart
     $existingCartItem = Cart::where('user_id', Auth::id())
@@ -221,8 +226,12 @@ public function checkout()
             return $cart->product !== null;
         });
 
+        $customer = User::find(auth()->id()); 
+
+        // dd($dbCart); 
+
     // Pass this filtered data to the view
-    return view('User.checkout', compact('dbCart'));
+    return view('User.checkout', compact('dbCart', 'customer'));
 }
 
 public function savecheckout(Request $request)

@@ -4,13 +4,12 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-use Illuminate\Support\Facades\View;
+    use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-
-Session::put('city', 'Indore');  // Save data
-
+// use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,12 +29,9 @@ class AppServiceProvider extends ServiceProvider
     //     //
     // }
 
+
 public function boot()
 {
-  
-Session::put('city', 'Indore');  // Save data
-    dd(Session::get('city'));
-    
     View::composer('*', function ($view) {
         if (Auth::check()) {
             $userId = Auth::id();

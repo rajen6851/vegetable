@@ -104,7 +104,7 @@
         <!-- End counterup banner section -->
 
         <!-- Start team members section -->
-        <section class="team__section section--padding">
+        {{-- <section class="team__section section--padding">
             <div class="container">
                 <div class="section__heading text-center mb-40">
                     <span class="section__heading--subtitle">Skilled Our Team Members</span>
@@ -295,7 +295,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
         <!-- End team members section -->
 
         <!-- Start testimonial section -->
@@ -596,7 +596,7 @@
         <!-- End testimonial section -->
 
         <!-- Start brand logo section -->
-        <div class="brand__logo--section section--padding">
+        {{-- <div class="brand__logo--section section--padding">
             <div class="container">
                 <div class="row row-cols-1">
                     <div class="col">
@@ -620,7 +620,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- End brand logo section -->
 
         <!-- Start shipping section -->

@@ -161,9 +161,12 @@
                         <a href="#" class="btn btn-link text-decoration-none">View All Orders</a>
                     </div>
 
+                    
+
                     @if(isset($orders) && $orders->count() > 0)
                         <div class="row g-4">
                             @foreach($orders as $order)
+                            
                                 <div class="col-lg-6 col-md-12">
                                     <div class="order__card border-radius-15 p-3 shadow-sm h-100">
                                         <div class="d-flex justify-content-between align-items-start mb-3">
@@ -180,13 +183,13 @@
                                             </span>
                                         </div>
                                         
-                                        <div class="order__items mb-3">
+                                        {{-- <div class="order__items mb-3">
                                             <div class="d-flex align-items-center mb-2">
                                                 <div class="order__item--image me-2">
                                                     <div class="placeholder-img bg-light rounded" style="width: 40px; height: 40px;"></div>
                                                 </div>
                                                 <div class="order__item--details">
-                                                    {{-- <p class="mb-0 small fw-medium">Product Name:{{ $order->product->name }}</p> --}}
+                                                    {
                                                     <p class="mb-0 small fw-medium">
     Product Name: {{ optional($order->product)->name ?? 'Product not available' }}
 </p>
@@ -194,7 +197,31 @@
                                                     <p class="mb-0 small text-muted">Qty: 1</p>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
+
+                                        <div class="order__items mb-3">
+
+   @foreach($order->carts as $item)
+<div class="d-flex align-items-center mb-2">
+    <div class="order__item--image me-2">
+        <img src="{{ asset('assets/images/product/' . $item->product->image) }}" 
+             alt="{{ $item->product->name }}" 
+             class="rounded" 
+             style="width: 40px; height: 40px; object-fit: cover;">
+    </div>
+
+    <div class="order__item--details">
+        <p class="mb-0 small fw-medium">
+            Product: {{ $item->product->name }}
+            Weight: {{$item->product->unit}}
+        </p>
+        <p class="mb-0 small text-muted">Qty: {{ $item->quantity }}</p>
+    </div>
+</div>
+@endforeach
+
+</div>
+
                                         
                                         <div class="d-flex justify-content-between align-items-center">
                                             <p class="mb-0 fw-bold">₹{{ number_format($order->price, 2) }}</p>
